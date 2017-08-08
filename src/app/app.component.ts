@@ -7,10 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  selectedFile(event: MSInputMethodContext) {
-    const target: HTMLInputElement = <HTMLInputElement>event.target;
-    const files: FileList = target.files;
-    const file: File = files[0];
+  selectedFile(event: any) {
+    const file: File = event.target.files[0];
     console.log("Selected filename: ", file.name);
   }
 
