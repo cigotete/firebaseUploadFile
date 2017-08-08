@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { AngularFireDatabase } from "angularfire2/database";
+
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +10,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  constructor(private db: AngularFireDatabase) {
+
+  }
+
   selectedFile(event: any) {
     const file: File = event.target.files[0];
-    console.log("Selected filename: ", file.name);
+
+    const metaData = {'contentType': file.type};
+    const storageRef: firebase.storage.Reference = firebase.storage().ref('/files/file');
+    storageRef.put(file, metaData);
+    console.log("Uploading filename: ", file.name);
   }
 
 }
