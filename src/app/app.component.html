@@ -1,3 +1,4 @@
 <h1>Files</h1>
-<input type="file" (change)="selectedFile($event)">
+<input type="file" (change)="selectedFile($event)"><br>
+<a [href]="(fileStream | async)?.url">file</a>
 <hr>

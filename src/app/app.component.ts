@@ -1,7 +1,13 @@
 import { Component } from '@angular/core';
-import { AngularFireDatabase } from "angularfire2/database";
+import { AngularFireDatabase, FirebaseObjectObservable } from "angularfire2/database";
 
 import * as firebase from 'firebase';
+
+
+interface fileUrl {
+  url: string;
+}
+
 
 @Component({
   selector: 'app-root',
@@ -10,8 +16,10 @@ import * as firebase from 'firebase';
 })
 export class AppComponent {
 
-  constructor(private db: AngularFireDatabase) {
+  public fileStream: FirebaseObjectObservable<fileUrl>;
 
+  constructor(private db: AngularFireDatabase) {
+    this.fileStream = this.db.object('files');
   }
 
   selectedFile(event: any) {
